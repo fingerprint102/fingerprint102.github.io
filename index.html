@@ -1,0 +1,2829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Global News Network - Stay Informed with the Latest World News, Politics, Technology, Business, Sports, Entertainment, Health, and Opinion.">
+    <meta name="keywords" content="news, world news, politics, technology, business, sports, entertainment, health, opinion">
+    <title>Global News Network | Stay Informed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+            --white: #fff;
+            --black: #000;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --danger-color: #d32f2f;
+            --success-color: #388e3c;
+            --menu-bg: var(--white);
+            --menu-hover: rgba(26, 115, 232, 0.1);
+        }
+
+        /* Dark Mode Variables */
+        .dark-mode {
+            --primary-color: #4285f4;
+            --primary-dark: #8ab4f8;
+            --secondary-color: #202124;
+            --text-color: #e8eaed;
+            --text-light: #9aa0a6;
+            --border-color: #5f6368;
+            --white: #292a2d;
+            --black: #e8eaed;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            --menu-bg: var(--secondary-color);
+            --menu-hover: rgba(66, 133, 244, 0.2);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+        }
+
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+        }
+
+        .btn-success:hover {
+            background-color: #2e7d32;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--text-color);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .theme-toggle, .search-btn, .admin-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover, .search-btn:hover, .admin-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .search-container {
+            position: relative;
+            width: 250px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 100;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-results a {
+            display: block;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .search-results a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Enhanced Navigation */
+        nav {
+            padding: 15px 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+            position: relative;
+        }
+
+        .nav-menu > li {
+            position: relative;
+            margin-right: 5px;
+        }
+
+        .nav-menu > li > a {
+            display: block;
+            padding: 12px 20px;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: var(--transition);
+            border-radius: 6px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-menu > li > a:hover,
+        .nav-menu > li > a.active {
+            background-color: var(--menu-hover);
+            color: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.2);
+        }
+
+        .nav-menu > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-menu > li > a.active::after,
+        .nav-menu > li > a:hover::after {
+            width: 80%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--menu-bg);
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 100;
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-menu > li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-color);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .dropdown a:hover {
+            background-color: var(--menu-hover);
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 5px;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: var(--menu-bg);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 1000;
+            padding: 80px 20px 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav .nav-menu {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mobile-nav .nav-menu > li > a {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .mobile-nav .dropdown {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            box-shadow: none;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.05);
+            margin-left: 20px;
+        }
+
+        .close-mobile-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Breaking News Ticker */
+        .breaking-news {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .breaking-news-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .breaking-label {
+            background-color: var(--danger-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+
+        .ticker {
+            overflow: hidden;
+            position: relative;
+            flex-grow: 1;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Hero Slider */
+        .hero {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .slider {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .slide-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .slide-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .slider-nav:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot:hover,
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .side-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .side-article {
+            display: flex;
+            gap: 15px;
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .side-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .side-article img {
+            width: 120px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .side-article-content {
+            padding: 10px 10px 10px 0;
+            flex-grow: 1;
+        }
+
+        .side-article-content h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .side-article-content .meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .article-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .article-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .interaction-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .interaction-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .interaction-btn:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .interaction-btn.liked i {
+            color: var(--success-color);
+        }
+
+        .interaction-btn.bookmarked i {
+            color: var(--primary-color);
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .sidebar-widget:hover {
+            transform: translateY(-2px);
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trending-list, .most-read-list, .recommended-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .trending-item, .most-read-item, .recommended-item {
+            display: flex;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .trending-item:last-child, .most-read-item:last-child, .recommended-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .trending-item:hover, .most-read-item:hover, .recommended-item:hover {
+            opacity: 0.8;
+            padding-left: 5px;
+        }
+
+        .trending-item img, .most-read-item img, .recommended-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .trending-content h4, .most-read-content h4, .recommended-content h4 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .trending-content .meta, .most-read-content .meta, .recommended-content .meta {
+            font-size: 0.7rem;
+            color: var(--text-light);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .newsletter h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: #0a3d7a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 50px 0 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px) rotate(360deg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--text-color);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Article Modal */
+        .article-full {
+            max-width: 1000px;
+        }
+
+        .article-full img, .article-full video {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .article-full .article-meta-full {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .article-full h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .article-full .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .article-full blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-light);
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .sharing-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .share-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .related-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .comment {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .comment:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .comment-content {
+            flex-grow: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .comment-text {
+            margin-bottom: 10px;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .comment-action {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .comment-action:hover {
+            color: var(--primary-color);
+        }
+
+        /* Profile Modal */
+        .profile-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .saved-articles, .comment-history {
+            margin-top: 20px;
+        }
+
+        .saved-articles h3, .comment-history h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Admin Dashboard */
+        .admin-dashboard {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .admin-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+        }
+
+        .admin-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .article-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .article-form-full {
+            grid-template-columns: 1fr;
+        }
+
+        .article-list, .user-list, .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .admin-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: var(--white);
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .admin-item:hover {
+            transform: translateX(5px);
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        /* Live Feed */
+        .live-feed {
+            background: var(--danger-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+        }
+
+        /* Accessibility Improvements */
+        [role="button"] {
+            cursor: pointer;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-content {
+                flex-direction: column;
+            }
+
+            .article-form {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .search-container {
+                width: 200px;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sharing-buttons {
+                flex-direction: column;
+            }
+
+            .comment {
+                flex-direction: column;
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 4px;
+                padding: 12px;
+            }
+            
+            .search-container {
+                width: 150px;
+            }
+
+            .slider {
+                height: 250px;
+            }
+
+            .slide-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .mobile-nav {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="close-mobile-menu" id="closeMobileMenu">
+            <i class="fas fa-times"></i>
+            <span class="sr-only">Close menu</span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#" data-category="all" class="active">Home</a></li>
+            <li><a href="#" data-category="world">World
+                <ul class="dropdown">
+                    <li><a href="#" data-category="world">International Affairs</a></li>
+                    <li><a href="#" data-category="world">Regional News</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-category="politics">Politics
+                <ul class="dropdown">
+                    <li><a href="#" data-category="politics">Elections</a></li>
+                    <li><a href="#" data-category="politics">Policy</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-category="technology">Technology
+                <ul class="dropdown">
+                    <li><a href="#" data-category="technology">Gadgets</a></li>
+                    <li><a href="#" data-category="technology">AI & Innovation</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-category="business">Business
+                <ul class="dropdown">
+                    <li><a href="#" data-category="business">Markets</a></li>
+                    <li><a href="#" data-category="business">Startups</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-category="sports">Sports
+                <ul class="dropdown">
+                    <li><a href="#" data-category="sports">Football</a></li>
+                    <li><a href="#" data-category="sports">Basketball</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-category="entertainment">Entertainment
+                <ul class="dropdown">
+                    <li><a href="#" data-category="entertainment">Movies</a></li>
+                    <li><a href="#" data-category="entertainment">Music</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-category="health">Health
+                <ul class="dropdown">
+                    <li><a href="#" data-category="health">Wellness</a></li>
+                    <li><a href="#" data-category="health">Fitness</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-category="opinion">Opinion</a></li>
+            <li><a href="#" data-category="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="top-bar">
+                <div class="logo">Global<span>News</span></div>
+                <div class="user-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search news..." aria-label="Search">
+                        <div class="search-results" id="searchResults">
+                            <!-- Search results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <button class="search-btn" id="searchBtn" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="userProfileSection">
+                        <button class="profile-btn" id="profileBtn" style="display: none;" aria-label="Profile">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <button class="btn" id="loginBtn">Login</button>
+                        <button class="btn" id="registerBtn">Register</button>
+                        <button class="admin-btn" id="adminBtn" style="display: none;" aria-label="Admin">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="desktopNavMenu">
+                    <li><a href="#" data-category="all" class="active">Home</a></li>
+                    <li><a href="#" data-category="world">World
+                        <ul class="dropdown">
+                            <li><a href="#" data-category="world">International Affairs</a></li>
+                            <li><a href="#" data-category="world">Regional News</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="politics">Politics
+                        <ul class="dropdown">
+                            <li><a href="#" data-category="politics">Elections</a></li>
+                            <li><a href="#" data-category="politics">Policy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="technology">Technology
+                        <ul class="dropdown">
+                            <li><a href="#" data-category="technology">Gadgets</a></li>
+                            <li><a href="#" data-category="technology">AI & Innovation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="business">Business
+                        <ul class="dropdown">
+                            <li><a href="#" data-category="business">Markets</a></li>
+                            <li><a href="#" data-category="business">Startups</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="sports">Sports
+                        <ul class="dropdown">
+                            <li><a href="#" data-category="sports">Football</a></li>
+                            <li><a href="#" data-category="sports">Basketball</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="entertainment">Entertainment
+                        <ul class="dropdown">
+                            <li><a href="#" data-category="entertainment">Movies</a></li>
+                            <li><a href="#" data-category="entertainment">Music</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="health">Health
+                        <ul class="dropdown">
+                            <li><a href="#" data-category="health">Wellness</a></li>
+                            <li><a href="#" data-category="health">Fitness</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-category="opinion">Opinion</a></li>
+                    <li><a href="#" data-category="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breaking News Ticker -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="breaking-news-container">
+                <div class="breaking-label">BREAKING</div>
+                <div class="ticker">
+                    <div class="ticker-content" id="tickerContent">
+                        Loading latest headlines...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Feed -->
+    <div class="container">
+        <div class="live-feed" id="liveFeed">
+            <i class="fas fa-bolt"></i> Loading live updates...
+        </div>
+
+        <!-- Hero Slider -->
+        <section class="hero">
+            <div class="slider" id="heroSlider">
+                <!-- Slides will be populated by JS -->
+            </div>
+            <div class="side-articles" id="sideArticles">
+                <!-- Side articles populated by JS -->
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <div class="filters" id="filters">
+            <!-- Filter buttons populated by JS -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-area">
+                <h2 class="section-title">Latest News</h2>
+                <div class="articles-grid" id="articlesGrid">
+                    <div class="loading">Loading news...</div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="loading">Loading sidebar...</div>
+            </div>
+        </div>
+        
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated with the latest news and exclusive content delivered directly to your inbox.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Global News</h4>
+                    <p>Delivering accurate, timely, and comprehensive news coverage from around the world since 1995.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-category="world">World News</a></li>
+                        <li><a href="#" data-category="politics">Politics</a></li>
+                        <li><a href="#" data-category="technology">Technology</a></li>
+                        <li><a href="#" data-category="business">Business</a></li>
+                        <li><a href="#" data-category="sports">Sports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Legal</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Global News Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Article Modal -->
+    <div class="modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="articleTitle">
+        <div class="modal-content article-full">
+            <div class="modal-header">
+                <h3 class="modal-title" id="articleTitle"></h3>
+                <button class="close-modal" id="closeArticleModal" aria-label="Close article">&times;</button>
+            </div>
+            <div id="articleContent">
+                <!-- Article content populated by JS -->
+            </div>
+            <div class="comments-section" id="commentsSection">
+                <!-- Comments populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Login to Your Account</h3>
+                <button class="close-modal" id="closeLoginModal" aria-label="Close login">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Login</button>
+                <div class="form-footer">
+                    <a href="#">Forgot Password?</a>
+                    <a href="#" id="switchToRegister">Create an Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Create an Account</h3>
+                <button class="close-modal" id="closeRegisterModal" aria-label="Close register">&times;</button>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Register</button>
+                <div class="form-footer">
+                    <a href="#" id="switchToLogin">Already have an account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">User Profile</h3>
+                <button class="close-modal" id="closeProfileModal" aria-label="Close profile">&times;</button>
+            </div>
+            <div class="profile-content">
+                <div class="profile-info">
+                    <h4 id="profileName"></h4>
+                    <p id="profileEmail"></p>
+                    <button class="btn" id="logoutBtn">Logout</button>
+                </div>
+                <div class="saved-articles">
+                    <h3>Saved Articles</h3>
+                    <div id="savedArticlesList"></div>
+                </div>
+                <div class="comment-history">
+                    <h3>Comment History</h3>
+                    <div id="commentHistoryList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div class="modal" id="adminModal" role="dialog" aria-modal="true">
+        <div class="modal-content admin-dashboard">
+            <div class="modal-header">
+                <h3 class="modal-title">Admin Dashboard</h3>
+                <button class="close-modal" id="closeAdminModal" aria-label="Close admin">&times;</button>
+            </div>
+            <div class="admin-section">
+                <h3>Add/Edit Article (Local)</h3>
+                <form id="articleForm" class="article-form article-form-full">
+                    <div class="form-group">
+                        <label for="articleTitleAdmin">Title</label>
+                        <input type="text" id="articleTitleAdmin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="articleCategory">Category</label>
+                        <select id="articleCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="world">World</option>
+                            <option value="politics">Politics</option>
+                            <option value="technology">Technology</option>
+                            <option value="business">Business</option>
+                            <option value="sports">Sports</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="health">Health</option>
+                            <option value="opinion">Opinion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="articleContentAdmin">Content</label>
+                        <textarea id="articleContentAdmin" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="articleImage">Image URL</label>
+                        <input type="url" id="articleImage" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label for="articleTags">Tags (comma-separated)</label>
+                        <input type="text" id="articleTags" placeholder="tag1, tag2">
+                    </div>
+                    <button type="submit" class="btn">Add Article</button>
+                </form>
+            </div>
+            <div class="admin-section">
+                <h3>Manage Local Articles</h3>
+                <div class="article-list" id="adminArticleList"></div>
+            </div>
+            <div class="admin-section">
+                <h3>Manage Users</h3>
+                <div class="user-list" id="adminUserList"></div>
+            </div>
+            <div class="admin-section">
+                <h3>Moderate Comments</h3>
+                <div class="comment-list" id="adminCommentList"></div>
+            </div>
+            <div class="admin-section">
+                <h3>Analytics (Local)</h3>
+                <p>Total Views: <span id="totalViews">0</span> | Total Users: <span id="totalUsers">0</span> | Total Comments: <span id="totalComments">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Structures
+        let categoriesData = {};
+        let currentArticles = [];
+        let allArticles = [];
+        let localArticles = JSON.parse(localStorage.getItem('localArticles')) || [];
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let newsletters = JSON.parse(localStorage.getItem('newsletters')) || [];
+        let isAdmin = false;
+
+        const categoriesMap = {
+            all: 'general',
+            world: 'general',
+            politics: 'general',
+            technology: 'technology',
+            business: 'business',
+            sports: 'sports',
+            entertainment: 'entertainment',
+            health: 'health',
+            opinion: 'general'
+        };
+
+        const uniqueApiCats = ['general', 'technology', 'business', 'sports', 'entertainment', 'health'];
+
+        // Fetch News from API
+        async function fetchNews(apiCategory, country = 'us') {
+            try {
+                const response = await fetch(`https://saurav.tech/NewsAPI/top-headlines/category/${apiCategory}/${country}.json`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                return data.articles.map((art, idx) => ({
+                    id: `${apiCategory}-${idx}-${Date.now()}`, // unique
+                    title: art.title,
+                    category: Object.keys(categoriesMap).find(key => categoriesMap[key] === apiCategory) || apiCategory,
+                    tags: [apiCategory],
+                    excerpt: (art.description || art.content?.substring(0, 150) || 'No description available') + '...',
+                    content: `
+                        <p>${art.description || art.content?.substring(0, 300) || 'No content available'}...</p>
+                        <p><a href="${art.url}" target="_blank" class="btn">Read Full Story on ${art.source.name}</a></p>
+                    `,
+                    image: art.urlToImage || 'https://via.placeholder.com/400x200?text=News',
+                    author: art.source.name,
+                    date: art.publishedAt ? new Date(art.publishedAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+                    views: Math.floor(Math.random() * 15000) + 1000,
+                    readingTime: '3 min',
+                    url: art.url,
+                    comments: []
+                }));
+            } catch (error) {
+                console.error('Error fetching news:', error);
+                return [];
+            }
+        }
+
+        // DOM Elements
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const desktopNavMenu = document.getElementById('desktopNavMenu');
+        const navMenu = document.getElementById('navMenu');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const profileBtn = document.getElementById('profileBtn');
+        const adminBtn = document.getElementById('adminBtn');
+        const userProfileSection = document.getElementById('userProfileSection');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const profileModal = document.getElementById('profileModal');
+        const adminModal = document.getElementById('adminModal');
+        const articleModal = document.getElementById('articleModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const closeProfileModal = document.getElementById('closeProfileModal');
+        const closeAdminModal = document.getElementById('closeAdminModal');
+        const closeArticleModal = document.getElementById('closeArticleModal');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const articlesGrid = document.getElementById('articlesGrid');
+        const heroSlider = document.getElementById('heroSlider');
+        const sideArticles = document.getElementById('sideArticles');
+        const filters = document.getElementById('filters');
+        const sidebar = document.getElementById('sidebar');
+        const tickerContent = document.getElementById('tickerContent');
+        const liveFeed = document.getElementById('liveFeed');
+        const articleForm = document.getElementById('articleForm');
+
+        // Initialize
+        async function init() {
+            // Ensure currentUser has required properties
+            if (currentUser) {
+                currentUser.likes ??= [];
+                currentUser.bookmarks ??= [];
+                currentUser.comments ??= [];
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+
+            await loadNewsData();
+            renderFilters();
+            renderArticles('all');
+            renderHeroSlider();
+            renderSideArticles();
+            renderSidebar();
+            updateUserUI();
+            startLiveUpdates();
+            loadAdminData();
+            updateTicker();
+        }
+
+        async function loadNewsData() {
+            const promises = uniqueApiCats.map(async (cat) => {
+                categoriesData[cat] = await fetchNews(cat);
+            });
+            await Promise.all(promises);
+            allArticles = Object.values(categoriesData).flat();
+        }
+
+        function getArticlesForCategory(cat) {
+            const apiCat = categoriesMap[cat] || 'general';
+            const apiArticles = categoriesData[apiCat] || [];
+            const localFiltered = localArticles.filter(a => a.category === cat);
+            return [...apiArticles, ...localFiltered];
+        }
+
+        // Theme Toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Load theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+
+        // Enhanced Mobile Menu
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuOverlay.classList.add('active');
+            mobileNav.classList.add('active');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenuOverlay.classList.remove('active');
+            mobileNav.classList.remove('active');
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenuOverlay.classList.remove('active');
+            mobileNav.classList.remove('active');
+        });
+
+        // Desktop nav click for dropdowns
+        desktopNavMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && e.target.dataset.category !== 'contact') {
+                e.preventDefault();
+                const category = e.target.dataset.category;
+                document.querySelectorAll('.nav-menu a[data-category]').forEach(item => item.classList.remove('active'));
+                e.target.classList.add('active');
+                renderArticles(category);
+            }
+        });
+
+        // Mobile nav click
+        navMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && e.target.dataset.category !== 'contact') {
+                e.preventDefault();
+                const category = e.target.dataset.category;
+                document.querySelectorAll('#navMenu a[data-category]').forEach(item => item.classList.remove('active'));
+                e.target.classList.add('active');
+                renderArticles(category);
+                mobileMenuOverlay.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Render Filters
+        function renderFilters() {
+            const categories = ['all', 'world', 'politics', 'technology', 'business', 'sports', 'entertainment', 'health', 'opinion'];
+            filters.innerHTML = categories.map(cat => `<button class="filter-btn ${cat === 'all' ? 'active' : ''}" data-category="${cat}">${cat.charAt(0).toUpperCase() + cat.slice(1)}</button>`).join('');
+            filters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    const category = e.target.dataset.category;
+                    filters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    renderArticles(category);
+                }
+            });
+        }
+
+        // Render Articles Grid
+        function renderArticlesGrid(articlesList) {
+            articlesGrid.innerHTML = articlesList.map(article => `
+                <div class="article-card" data-id="${article.id}">
+                    <img src="${article.image}" alt="${article.title}" loading="lazy">
+                    <div class="article-content">
+                        <span class="category-tag">${article.category.toUpperCase()}</span>
+                        <h3>${article.title}</h3>
+                        <p>${article.excerpt}</p>
+                        <div class="article-meta">
+                            <span>${article.author} • ${article.date} • ${article.readingTime}</span>
+                            <div class="interaction-btns">
+                                <button class="interaction-btn like-btn ${currentUser && (currentUser.likes || []).includes(article.id) ? 'liked' : ''}" data-id="${article.id}" aria-label="Like">
+                                    <i class="fas fa-heart"></i> ${article.views}
+                                </button>
+                                <button class="interaction-btn bookmark-btn ${currentUser && (currentUser.bookmarks || []).includes(article.id) ? 'bookmarked' : ''}" data-id="${article.id}" aria-label="Bookmark">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                                <button class="interaction-btn share-btn" data-id="${article.id}" aria-label="Share">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add event listeners
+            articlesGrid.querySelectorAll('.article-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.closest('.interaction-btns')) {
+                        openArticle(card.dataset.id);
+                    }
+                });
+            });
+
+            articlesGrid.querySelectorAll('.like-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleLike(btn.dataset.id);
+                });
+            });
+
+            articlesGrid.querySelectorAll('.bookmark-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleBookmark(btn.dataset.id);
+                });
+            });
+
+            articlesGrid.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    shareArticle(btn.dataset.id);
+                });
+            });
+        }
+
+        // Render Articles
+        function renderArticles(category = 'all') {
+            if (category === 'contact') {
+                articlesGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 40px;"><h3>Contact Us</h3><p>For inquiries, email info@globalnews.com</p></div>';
+                return;
+            }
+            currentArticles = getArticlesForCategory(category);
+            renderArticlesGrid(currentArticles);
+        }
+
+        // Hero Slider
+        function renderHeroSlider() {
+            const featured = getArticlesForCategory('all').slice(0, 3);
+            if (featured.length === 0) {
+                heroSlider.innerHTML = '<div class="loading">Loading featured...</div>';
+                return;
+            }
+            heroSlider.innerHTML = featured.map((article, index) => `
+                <div class="slide ${index === 0 ? 'active' : ''}">
+                    <img src="${article.image}" alt="${article.title}" loading="lazy">
+                    <div class="slide-content">
+                        <span class="category-tag">${article.category.toUpperCase()}</span>
+                        <h2>${article.title}</h2>
+                        <div class="slide-meta">
+                            <span><i class="far fa-user"></i> ${article.author}</span>
+                            <span><i class="far fa-clock"></i> ${article.date}</span>
+                            <span><i class="far fa-eye"></i> ${article.views} views</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('') + `
+                <button class="slider-nav prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-nav next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-dots">
+                    ${featured.map((_, index) => `<span class="dot ${index === 0 ? 'active' : ''}" data-slide="${index}" role="button" aria-label="Go to slide ${index + 1}"></span>`).join('')}
+                </div>
+            `;
+
+            let currentSlide = 0;
+            const totalSlides = featured.length;
+
+            if (totalSlides === 0) return;
+
+            // Navigation
+            const prevBtn = heroSlider.querySelector('.prev');
+            const nextBtn = heroSlider.querySelector('.next');
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+
+            heroSlider.querySelectorAll('.dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentSlide = parseInt(dot.dataset.slide);
+                    updateSlider();
+                });
+            });
+
+            // Auto slide
+            const interval = setInterval(() => {
+                if (!articleModal.classList.contains('active')) {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateSlider();
+                }
+            }, 5000);
+
+            function updateSlider() {
+                heroSlider.querySelectorAll('.slide').forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+                heroSlider.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+        }
+
+        // Side Articles
+        function renderSideArticles() {
+            const side = getArticlesForCategory('all').slice(1, 4);
+            if (side.length === 0) {
+                sideArticles.innerHTML = '<div class="loading">Loading side articles...</div>';
+                return;
+            }
+            sideArticles.innerHTML = side.map(article => `
+                <div class="side-article" data-id="${article.id}">
+                    <img src="${article.image}" alt="${article.title}" loading="lazy">
+                    <div class="side-article-content">
+                        <span class="category-tag">${article.category.toUpperCase()}</span>
+                        <h3>${article.title}</h3>
+                        <div class="meta">${article.author} • ${article.date}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            sideArticles.querySelectorAll('.side-article').forEach(articleEl => {
+                articleEl.addEventListener('click', () => openArticle(articleEl.dataset.id));
+            });
+        }
+
+        // Sidebar
+        function renderSidebar() {
+            const allForSidebar = getArticlesForCategory('all');
+            if (allForSidebar.length === 0) {
+                sidebar.innerHTML = '<div class="loading">Loading sidebar...</div>';
+                return;
+            }
+            const trending = [...allForSidebar].sort((a, b) => b.views - a.views).slice(0, 3);
+            const mostRead = [...trending];
+            const bookmarks = currentUser ? (currentUser.bookmarks || []) : [];
+            const recommended = allForSidebar.filter(a => !bookmarks.includes(a.id)).slice(0, 3);
+
+            sidebar.innerHTML = `
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Trending Now</h3>
+                    <div class="trending-list">
+                        ${trending.map(article => `
+                            <div class="trending-item" data-id="${article.id}">
+                                <img src="${article.image}" alt="${article.title}" loading="lazy">
+                                <div class="trending-content">
+                                    <h4>${article.title}</h4>
+                                    <div class="meta">${article.category.toUpperCase()} • ${article.date}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Most Read</h3>
+                    <div class="most-read-list">
+                        ${mostRead.map(article => `
+                            <div class="most-read-item">
+                                <div class="most-read-content">
+                                    <h4>${article.title}</h4>
+                                    <div class="meta">${article.views} views</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Recommended for You</h3>
+                    <div class="recommended-list">
+                        ${recommended.map(article => `
+                            <div class="recommended-item" data-id="${article.id}">
+                                <img src="${article.image}" alt="${article.title}" loading="lazy">
+                                <div class="recommended-content">
+                                    <h4>${article.title}</h4>
+                                    <div class="meta">${article.category.toUpperCase()}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Advertisement</h3>
+                    <div class="ad-placeholder" style="background-color: #f0f0f0; height: 250px; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
+                        <p>Advertisement Space</p>
+                    </div>
+                </div>
+            `;
+
+            sidebar.querySelectorAll('.trending-item, .recommended-item').forEach(item => {
+                item.addEventListener('click', () => openArticle(item.dataset.id));
+            });
+        }
+
+        function updateTicker() {
+            const headlines = allArticles.slice(0, 5).map(a => a.title).join(' • ');
+            tickerContent.textContent = headlines || 'Global news updates';
+        }
+
+        // Search Functionality
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            searchResults.innerHTML = '';
+            
+            if (query.length > 2) {
+                const filteredArticles = allArticles.filter(article => 
+                    article.title.toLowerCase().includes(query) || 
+                    article.category.toLowerCase().includes(query) ||
+                    (article.tags || []).some(tag => tag.toLowerCase().includes(query))
+                );
+                
+                if (filteredArticles.length > 0) {
+                    searchResults.classList.add('active');
+                    filteredArticles.slice(0, 5).forEach(article => {
+                        const resultItem = document.createElement('a');
+                        resultItem.href = '#';
+                        resultItem.innerHTML = `
+                            <strong>${article.title}</strong>
+                            <span style="display: block; font-size: 0.8rem; color: var(--text-light);">${article.category.toUpperCase()}</span>
+                        `;
+                        resultItem.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            openArticle(article.id);
+                            searchResults.classList.remove('active');
+                            searchInput.value = '';
+                        });
+                        searchResults.appendChild(resultItem);
+                    });
+                } else {
+                    searchResults.classList.add('active');
+                    const noResults = document.createElement('div');
+                    noResults.textContent = 'No results found';
+                    noResults.style.padding = '10px 15px';
+                    searchResults.appendChild(noResults);
+                }
+            } else {
+                searchResults.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.classList.remove('active');
+            }
+        });
+
+        // User Auth
+        function updateUserUI() {
+            if (currentUser) {
+                loginBtn.style.display = 'none';
+                registerBtn.style.display = 'none';
+                profileBtn.style.display = 'block';
+                if (currentUser.email === 'admin@news.com') {
+                    adminBtn.style.display = 'block';
+                    isAdmin = true;
+                }
+                document.getElementById('profileName').textContent = currentUser.name;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+                renderProfileContent();
+                renderArticles(); // Re-render to update likes/bookmarks
+                renderSidebar();
+            } else {
+                loginBtn.style.display = 'block';
+                registerBtn.style.display = 'block';
+                profileBtn.style.display = 'none';
+                adminBtn.style.display = 'none';
+                isAdmin = false;
+            }
+        }
+
+        loginBtn.addEventListener('click', () => loginModal.classList.add('active'));
+        registerBtn.addEventListener('click', () => registerModal.classList.add('active'));
+        profileBtn.addEventListener('click', () => profileModal.classList.add('active'));
+        if (adminBtn) adminBtn.addEventListener('click', () => adminModal.classList.add('active'));
+
+        closeLoginModal.addEventListener('click', () => loginModal.classList.remove('active'));
+        closeRegisterModal.addEventListener('click', () => registerModal.classList.remove('active'));
+        closeProfileModal.addEventListener('click', () => profileModal.classList.remove('active'));
+        closeAdminModal.addEventListener('click', () => adminModal.classList.remove('active'));
+        closeArticleModal.addEventListener('click', () => articleModal.classList.remove('active'));
+
+        switchToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('active');
+            registerModal.classList.add('active');
+        });
+
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            [loginModal, registerModal, profileModal, adminModal, articleModal].forEach(modal => {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                currentUser = { ...user, likes: user.likes || [], bookmarks: user.bookmarks || [], comments: user.comments || [] };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                updateUserUI();
+                loginModal.classList.remove('active');
+                alert('Login successful!');
+            } else {
+                alert('Invalid credentials!');
+            }
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            if (users.find(u => u.email === email)) {
+                alert('User already exists!');
+                return;
+            }
+            const newUser = { id: Date.now(), name, email, password, likes: [], bookmarks: [], comments: [] };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Registration successful! Please login.');
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateUserUI();
+            profileModal.classList.remove('active');
+            alert('Logged out successfully!');
+        });
+
+        function renderProfileContent() {
+            const savedList = document.getElementById('savedArticlesList');
+            const bookmarks = currentUser.bookmarks || [];
+            savedList.innerHTML = bookmarks.map(id => {
+                const article = [...allArticles, ...localArticles].find(a => a.id === id);
+                return article ? `<p><a href="#" onclick="openArticle('${id}')">${article.title}</a></p>` : '';
+            }).join('') || '<p>No saved articles.</p>';
+
+            const commentHistoryList = document.getElementById('commentHistoryList');
+            const comments = currentUser.comments || [];
+            commentHistoryList.innerHTML = comments.map(comment => {
+                const article = [...allArticles, ...localArticles].find(a => a.id === comment.articleId);
+                return `<p><strong>${article ? article.title : 'Unknown'}</strong> - ${comment.text}</p>`;
+            }).join('') || '<p>No comments yet.</p>';
+        }
+
+        // Article Functions
+        function openArticle(id) {
+            const allAvailArticles = [...allArticles, ...localArticles];
+            const article = allAvailArticles.find(a => a.id === id);
+            if (!article) return;
+
+            document.getElementById('articleTitle').textContent = article.title;
+            document.getElementById('articleContent').innerHTML = `
+                <img src="${article.image}" alt="${article.title}" loading="lazy">
+                <div class="article-meta-full">
+                    <div>
+                        <span><i class="far fa-user"></i> ${article.author}</span>
+                        <span><i class="far fa-clock"></i> ${article.date} • ${article.readingTime}</span>
+                        <span><i class="fas fa-tag"></i> ${(article.tags || []).join(', ')}</span>
+                    </div>
+                    <div class="interaction-btns">
+                        <button class="interaction-btn like-btn ${currentUser && (currentUser.likes || []).includes(article.id) ? 'liked' : ''}" data-id="${article.id}" aria-label="Like">
+                            <i class="fas fa-heart"></i> ${article.views}
+                        </button>
+                        <button class="interaction-btn bookmark-btn ${currentUser && (currentUser.bookmarks || []).includes(article.id) ? 'bookmarked' : ''}" data-id="${article.id}" aria-label="Bookmark">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="content">${article.content}</div>
+                <div class="sharing-buttons">
+                    <button class="share-btn" data-id="${article.id}" onclick="shareArticle('${article.id}')">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                    <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title + ' ' + article.url)}')">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </button>
+                    <button class="share-btn" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(article.url)}&title=${encodeURIComponent(article.title)}')">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </button>
+                </div>
+                <div class="nav-links">
+                    <button class="btn" onclick="navigateArticle(-1)">Previous</button>
+                    <button class="btn" onclick="navigateArticle(1)">Next</button>
+                </div>
+                <div class="related-articles">
+                    <h3>Related Articles</h3>
+                    ${allAvailArticles.filter(a => a.category === article.category && a.id !== article.id).slice(0, 3).map(rel => `
+                        <div class="article-card" data-id="${rel.id}" style="margin-bottom: 0;">
+                            <img src="${rel.image}" alt="${rel.title}" loading="lazy">
+                            <div class="article-content">
+                                <h3>${rel.title}</h3>
+                                <p>${rel.excerpt}</p>
+                            </div>
+                        </div>
+                    `).join('') || '<p>No related articles.</p>'}
+                </div>
+            `;
+
+            // Comments
+            const commentsSection = document.getElementById('commentsSection');
+            const commentFormHtml = currentUser ? `
+                <form class="comment-form" onsubmit="addComment(event, '${article.id}')">
+                    <textarea placeholder="Add a comment..." required aria-label="Comment"></textarea>
+                    <button type="submit" class="btn">Post Comment</button>
+                </form>
+            ` : '<p><a href="#" onclick="showLoginFromArticle()">Login to comment</a></p>';
+
+            const articleComments = article.comments || [];
+            commentsSection.innerHTML = commentFormHtml + `
+                <div class="comment-list">
+                    ${articleComments.map(comment => renderComment(comment)).join('')}
+                </div>
+            `;
+
+            // Interactions
+            const likeBtn = commentsSection.querySelector('.like-btn');
+            if (likeBtn) likeBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleLike(article.id); });
+            const bookmarkBtn = commentsSection.querySelector('.bookmark-btn');
+            if (bookmarkBtn) bookmarkBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleBookmark(article.id); });
+
+            // Related articles click
+            commentsSection.querySelectorAll('.related-articles .article-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    articleModal.classList.remove('active');
+                    setTimeout(() => openArticle(card.dataset.id), 300);
+                });
+            });
+
+            articleModal.classList.add('active');
+        }
+
+        function showLoginFromArticle() {
+            articleModal.classList.remove('active');
+            loginModal.classList.add('active');
+        }
+
+        function navigateArticle(direction) {
+            const allAvailArticles = [...allArticles, ...localArticles];
+            const currentId = document.querySelector('.like-btn')?.dataset.id;
+            const currentIndex = allAvailArticles.findIndex(a => a.id === currentId);
+            const nextIndex = (currentIndex + direction + allAvailArticles.length) % allAvailArticles.length;
+            openArticle(allAvailArticles[nextIndex].id);
+        }
+
+        function renderComment(comment, level = 0) {
+            return `
+                <div class="comment" style="margin-left: ${level * 20}px;">
+                    <div class="comment-avatar">${comment.author.charAt(0)}</div>
+                    <div class="comment-content">
+                        <div class="comment-header">
+                            <span class="comment-author">${comment.author}</span>
+                            <span class="comment-date">${comment.date}</span>
+                        </div>
+                        <div class="comment-text">${comment.text}</div>
+                        <div class="comment-actions">
+                            ${currentUser ? `<button class="comment-action" onclick="replyComment('${comment.id}')">Reply</button>` : ''}
+                            ${isAdmin ? `<button class="comment-action btn-danger" onclick="deleteComment('${comment.id}')">Delete</button>` : ''}
+                        </div>
+                        ${comment.replies ? comment.replies.map(reply => renderComment(reply, level + 1)).join('') : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function addComment(e, articleId) {
+            e.preventDefault();
+            const textarea = e.target.querySelector('textarea');
+            const text = textarea.value.trim();
+            if (!text || !currentUser) return;
+
+            const comment = {
+                id: Date.now().toString(),
+                author: currentUser.name,
+                date: new Date().toISOString().split('T')[0],
+                text,
+                replies: [],
+                articleId
+            };
+
+            const allAvailArticles = [...allArticles, ...localArticles];
+            const articleIndex = allAvailArticles.findIndex(a => a.id === articleId);
+            if (articleIndex !== -1) {
+                if (articleIndex < allArticles.length) {
+                    // API article, add to local copy or skip comments for API
+                    alert('Comments on API articles are not persisted.');
+                } else {
+                    // Local article
+                    localArticles[articleIndex - allArticles.length].comments = localArticles[articleIndex - allArticles.length].comments || [];
+                    localArticles[articleIndex - allArticles.length].comments.push(comment);
+                    localStorage.setItem('localArticles', JSON.stringify(localArticles));
+                }
+            }
+
+            currentUser.comments = currentUser.comments || [];
+            currentUser.comments.push({ articleId, text, date: comment.date });
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            textarea.value = '';
+            openArticle(articleId); // Refresh
+        }
+
+        function replyComment(parentId) {
+            const replyText = prompt('Enter your reply:');
+            if (replyText && currentUser) {
+                const reply = {
+                    id: (Date.now() + 1).toString(),
+                    author: currentUser.name,
+                    date: new Date().toISOString().split('T')[0],
+                    text: replyText,
+                    replies: []
+                };
+                const articleId = document.querySelector('.like-btn')?.dataset.id;
+                const allAvailArticles = [...allArticles, ...localArticles];
+                const article = allAvailArticles.find(a => a.id === articleId);
+                if (article && article.comments) {
+                    const comment = findCommentRecursive(article.comments, parentId);
+                    if (comment) {
+                        comment.replies = comment.replies || [];
+                        comment.replies.push(reply);
+                        if (allAvailArticles.indexOf(article) >= allArticles.length) {
+                            // Save local
+                            localStorage.setItem('localArticles', JSON.stringify(localArticles));
+                        }
+                        openArticle(articleId);
+                    }
+                }
+            }
+        }
+
+        function findCommentRecursive(comments, id) {
+            for (let comment of comments) {
+                if (comment.id === id) return comment;
+                if (comment.replies) {
+                    const found = findCommentRecursive(comment.replies, id);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+
+        function deleteComment(commentId) {
+            if (confirm('Delete this comment?')) {
+                const articleId = document.querySelector('.like-btn')?.dataset.id;
+                const allAvailArticles = [...allArticles, ...localArticles];
+                const articleIndex = allAvailArticles.findIndex(a => a.id === articleId);
+                if (articleIndex >= allArticles.length) {
+                    // Local
+                    deleteCommentRecursive(localArticles[articleIndex - allArticles.length].comments, commentId);
+                    localStorage.setItem('localArticles', JSON.stringify(localArticles));
+                }
+                openArticle(articleId);
+            }
+        }
+
+        function deleteCommentRecursive(comments, id) {
+            for (let i = 0; i < comments.length; i++) {
+                if (comments[i].id === id) {
+                    comments.splice(i, 1);
+                    return;
+                }
+                if (comments[i].replies) {
+                    deleteCommentRecursive(comments[i].replies, id);
+                }
+            }
+        }
+
+        function toggleLike(articleId) {
+            if (!currentUser) {
+                alert('Please login to like!');
+                loginModal.classList.add('active');
+                return;
+            }
+            currentUser.likes = currentUser.likes || [];
+            const index = currentUser.likes.indexOf(articleId);
+            if (index > -1) {
+                currentUser.likes.splice(index, 1);
+            } else {
+                currentUser.likes.push(articleId);
+            }
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateUserUI();
+        }
+
+        function toggleBookmark(articleId) {
+            if (!currentUser) {
+                alert('Please login to bookmark!');
+                loginModal.classList.add('active');
+                return;
+            }
+            currentUser.bookmarks = currentUser.bookmarks || [];
+            const index = currentUser.bookmarks.indexOf(articleId);
+            if (index > -1) {
+                currentUser.bookmarks.splice(index, 1);
+            } else {
+                currentUser.bookmarks.push(articleId);
+            }
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateUserUI();
+        }
+
+        function shareArticle(articleId) {
+            const allAvailArticles = [...allArticles, ...localArticles];
+            const article = allAvailArticles.find(a => a.id === articleId);
+            if (article && navigator.share) {
+                navigator.share({
+                    title: article.title,
+                    text: article.excerpt,
+                    url: article.url
+                });
+            } else if (article) {
+                alert(`Share: ${article.title} - ${article.url}`);
+            }
+        }
+
+        // Newsletter
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            if (!newsletters.includes(email)) {
+                newsletters.push(email);
+                localStorage.setItem('newsletters', JSON.stringify(newsletters));
+            }
+            alert(`Thank you for subscribing with ${email}! We'll send a confirmation email.`);
+            e.target.reset();
+        });
+
+        // Live Updates
+        function startLiveUpdates() {
+            setInterval(() => {
+                if (allArticles.length > 0) {
+                    const randomArticle = allArticles[Math.floor(Math.random() * allArticles.length)];
+                    liveFeed.innerHTML = `<i class="fas fa-bolt"></i> Live: ${randomArticle.title.substring(0, 50)}...`;
+                }
+            }, 10000);
+        }
+
+        // Admin Functions (for local articles)
+        function loadAdminData() {
+            if (!isAdmin) return;
+
+            // Local Articles list
+            const adminArticleList = document.getElementById('adminArticleList');
+            adminArticleList.innerHTML = localArticles.map(article => `
+                <div class="admin-item">
+                    <span>${article.title} (${article.category})</span>
+                    <div class="admin-actions">
+                        <button class="btn" onclick="editLocalArticle('${article.id}')">Edit</button>
+                        <button class="btn-danger" onclick="deleteLocalArticle('${article.id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Users list
+            const adminUserList = document.getElementById('adminUserList');
+            adminUserList.innerHTML = users.map(user => `
+                <div class="admin-item">
+                    <span>${user.name} (${user.email})</span>
+                    <div class="admin-actions">
+                        <button class="btn-danger" onclick="deleteUser(${user.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Comments list (from local)
+            const allLocalComments = localArticles.flatMap(a => (a.comments || []).map(c => ({...c, articleTitle: a.title})));
+            const adminCommentList = document.getElementById('adminCommentList');
+            adminCommentList.innerHTML = allLocalComments.map(comment => `
+                <div class="admin-item">
+                    <span>${comment.text.substring(0, 50)}... from ${comment.articleTitle}</span>
+                    <div class="admin-actions">
+                        <button class="btn-danger" onclick="deleteComment('${comment.id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Analytics (local + api approx)
+            document.getElementById('totalViews').textContent = allArticles.reduce((sum, a) => sum + a.views, 0) + localArticles.reduce((sum, a) => sum + (a.views || 0), 0);
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalComments').textContent = allLocalComments.length + (currentUser ? (currentUser.comments || []).length : 0);
+        }
+
+        articleForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('articleTitleAdmin').value;
+            const category = document.getElementById('articleCategory').value;
+            const content = document.getElementById('articleContentAdmin').value;
+            const image = document.getElementById('articleImage').value || 'https://via.placeholder.com/400x200?text=News';
+            const tagsInput = document.getElementById('articleTags').value;
+            const tags = tagsInput ? tagsInput.split(',').map(t => t.trim()) : [];
+
+            const newArticle = {
+                id: 'local-' + Date.now(),
+                title,
+                category,
+                tags,
+                excerpt: content.substring(0, 150) + '...',
+                content: `<p>${content.replace(/\n/g, '</p><p>')}</p>`,
+                image,
+                author: currentUser ? currentUser.name : 'Admin',
+                date: new Date().toISOString().split('T')[0],
+                views: 0,
+                readingTime: Math.ceil(content.length / 500) + ' min',
+                comments: []
+            };
+
+            const editingId = articleForm.dataset.editingId;
+            if (editingId) {
+                // Update
+                const localIndex = localArticles.findIndex(a => a.id === editingId);
+                if (localIndex !== -1) {
+                    localArticles[localIndex] = { ...newArticle, id: editingId };
+                }
+                delete articleForm.dataset.editingId;
+                alert('Local article updated!');
+            } else {
+                // Add
+                localArticles.unshift(newArticle);
+                alert('Local article added!');
+            }
+            localStorage.setItem('localArticles', JSON.stringify(localArticles));
+            articleForm.reset();
+            loadAdminData();
+            renderArticles();
+            renderSidebar();
+        });
+
+        function editLocalArticle(id) {
+            const article = localArticles.find(a => a.id === id);
+            if (article) {
+                document.getElementById('articleTitleAdmin').value = article.title;
+                document.getElementById('articleCategory').value = article.category;
+                document.getElementById('articleContentAdmin').value = article.content.replace(/<[^>]*>/g, '').replace(/<\/p>/g, '\n');
+                document.getElementById('articleImage').value = article.image;
+                document.getElementById('articleTags').value = article.tags.join(', ');
+                articleForm.dataset.editingId = id;
+                alert('Edit mode: Update the form and submit.');
+            }
+        }
+
+        function deleteLocalArticle(id) {
+            if (confirm('Delete this local article?')) {
+                localArticles = localArticles.filter(a => a.id !== id);
+                localStorage.setItem('localArticles', JSON.stringify(localArticles));
+                loadAdminData();
+                renderArticles();
+                renderSidebar();
+            }
+        }
+
+        function deleteUser(id) {
+            if (confirm('Delete this user?')) {
+                users = users.filter(u => u.id !== id);
+                if (currentUser && currentUser.id === id) {
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                }
+                localStorage.setItem('users', JSON.stringify(users));
+                loadAdminData();
+                updateUserUI();
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
