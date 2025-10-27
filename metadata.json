@@ -1,0 +1,7 @@
+{
+  "name": "Gemini AI Assistant",
+  "description": "An intelligent AI assistant that accurately answers questions via text chat and engages in real-time voice conversations using the Gemini Live API.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
